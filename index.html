@@ -36,7 +36,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ── ambient bg ─────────────────────────── */
   .bg-grid {
     position: fixed; inset: 0; z-index: 0; pointer-events: none;
     background-image:
@@ -47,10 +46,8 @@
     background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
   }
 
-  /* ── layout ─────────────────────────────── */
   .wrapper { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 24px }
 
-  /* ── header ─────────────────────────────── */
   header {
     display: flex; align-items: center; justify-content: space-between;
     padding: 28px 0;
@@ -70,7 +67,6 @@
     letter-spacing:.04em; text-transform:uppercase;
   }
 
-  /* ── hero ────────────────────────────────── */
   .hero { text-align:center; padding: 72px 0 48px }
   .hero h1 {
     font-size: clamp(2rem,5vw,3.2rem); font-weight:700;
@@ -80,7 +76,6 @@
   }
   .hero p { color:var(--text-dim); font-size:1.05rem; margin-top:16px; line-height:1.65; max-width:520px; margin-inline:auto }
 
-  /* ── proxy bar ──────────────────────────── */
   .proxy-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -125,7 +120,43 @@
   }
   .quick-link:hover { border-color:var(--accent); color:var(--accent); background:var(--accent-dim) }
 
-  /* ── status strip ───────────────────────── */
+  .mode-row {
+    display:flex; gap:8px; margin-top:16px; padding-top:16px;
+    border-top:1px solid var(--border);
+  }
+  .mode-btn {
+    flex:1; padding:10px; border-radius:8px; border:1px solid var(--border);
+    background:var(--surface-2); color:var(--text-dim);
+    font-family:var(--font-body); font-size:.78rem; font-weight:500;
+    cursor:pointer; transition:.2s; text-align:center;
+  }
+  .mode-btn.active {
+    border-color:var(--accent); color:var(--accent);
+    background:var(--accent-dim);
+  }
+
+  .history { margin-bottom:32px }
+  .history-title {
+    font-size:.75rem; text-transform:uppercase; letter-spacing:.06em;
+    color:var(--text-dim); margin-bottom:10px;
+  }
+  .history-item {
+    display:flex; align-items:center; gap:10px;
+    padding:10px 14px; border-radius:10px;
+    background:var(--surface); border:1px solid var(--border);
+    margin-bottom:6px; cursor:pointer; transition:.2s;
+    font-family:var(--font-mono); font-size:.78rem; color:var(--text-dim);
+    text-decoration:none; overflow:hidden;
+  }
+  .history-item:hover { border-color:var(--accent); color:var(--accent) }
+  .history-item span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1 }
+  .history-item svg { width:14px; height:14px; flex-shrink:0; color:var(--accent) }
+  .history-clear {
+    background:none; border:none; color:var(--text-dim); font-size:.72rem;
+    cursor:pointer; text-decoration:underline; margin-top:4px;
+    font-family:var(--font-body);
+  }
+
   .status-strip {
     display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
     margin-bottom:48px;
@@ -140,12 +171,10 @@
   .status-val { font-family:var(--font-mono); font-size:1.4rem; font-weight:700; color:var(--accent) }
   .status-label { font-size:.72rem; color:var(--text-dim); margin-top:4px; text-transform:uppercase; letter-spacing:.06em }
 
-  /* ── features ────────────────────────────── */
   .features { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:56px }
   .feat {
     background:var(--surface); border:1px solid var(--border);
-    border-radius:var(--radius); padding:22px;
-    transition:.25s;
+    border-radius:var(--radius); padding:22px; transition:.25s;
   }
   .feat:hover { border-color:var(--accent); transform:translateY(-2px) }
   .feat-icon {
@@ -157,36 +186,12 @@
   .feat h3 { font-size:.92rem; font-weight:600; margin-bottom:4px }
   .feat p { font-size:.78rem; color:var(--text-dim); line-height:1.55 }
 
-  /* ── footer ─────────────────────────────── */
   footer {
     border-top:1px solid var(--border); padding:28px 0; text-align:center;
     font-size:.75rem; color:var(--text-dim); margin-top:24px;
   }
   footer a { color:var(--accent); text-decoration:none }
 
-  /* ── result iframe ──────────────────────── */
-  .frame-wrap {
-    display:none; margin-bottom:32px;
-    background:var(--surface); border:1px solid var(--border);
-    border-radius:var(--radius); overflow:hidden;
-    animation: cardUp .5s ease both;
-  }
-  .frame-bar {
-    display:flex; align-items:center; gap:10px; padding:12px 18px;
-    background:var(--surface-2); border-bottom:1px solid var(--border);
-    font-family:var(--font-mono); font-size:.75rem; color:var(--text-dim);
-  }
-  .frame-bar .dot { width:10px; height:10px; border-radius:50%; background:var(--accent) }
-  .frame-bar span { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
-  .frame-close {
-    background:none; border:none; color:var(--text-dim); cursor:pointer;
-    padding:4px; border-radius:6px; display:flex; transition:.15s;
-  }
-  .frame-close:hover { background:var(--surface); color:var(--danger) }
-  .frame-close svg { width:16px; height:16px }
-  .frame-wrap iframe { width:100%; height:70vh; border:none; background:#fff }
-
-  /* ── error toast ────────────────────────── */
   .toast {
     position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px);
     background:var(--surface-2); border:1px solid var(--danger);
@@ -208,7 +213,6 @@
 <div class="bg-grid"></div>
 
 <div class="wrapper">
-  <!-- Header -->
   <header>
     <div class="logo">
       <div class="logo-icon">
@@ -216,16 +220,14 @@
       </div>
       Nova
     </div>
-    <span class="badge">v2.0</span>
+    <span class="badge">v2.1</span>
   </header>
 
-  <!-- Hero -->
   <div class="hero">
     <h1>Browse Without<br>Boundaries</h1>
     <p>A fast, encrypted web gateway powered by edge computing. Enter any URL to get started.</p>
   </div>
 
-  <!-- Proxy Input -->
   <div class="proxy-card">
     <div class="input-row">
       <input type="text" id="urlInput" placeholder="https://example.com" spellcheck="false" autocomplete="off">
@@ -244,21 +246,18 @@
       <a class="quick-link" onclick="setUrl('https://lite.duckduckgo.com')">DuckDuckGo</a>
       <a class="quick-link" onclick="setUrl('https://www.reuters.com')">Reuters</a>
     </div>
-  </div>
-
-  <!-- Result Frame -->
-  <div class="frame-wrap" id="frameWrap">
-    <div class="frame-bar">
-      <div class="dot"></div>
-      <span id="frameUrl">—</span>
-      <button class="frame-close" onclick="closeFrame()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
-      </button>
+    <div class="mode-row">
+      <button class="mode-btn active" onclick="setMode('tab', this)">New Tab</button>
+      <button class="mode-btn" onclick="setMode('redirect', this)">Same Tab</button>
     </div>
-    <iframe id="proxyFrame" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
   </div>
 
-  <!-- Stats -->
+  <div class="history" id="historySection" style="display:none">
+    <div class="history-title">Recent</div>
+    <div id="historyList"></div>
+    <button class="history-clear" onclick="clearHistory()">Clear history</button>
+  </div>
+
   <div class="status-strip">
     <div class="status-item">
       <div class="status-val">275+</div>
@@ -274,7 +273,6 @@
     </div>
   </div>
 
-  <!-- Features -->
   <div class="features">
     <div class="feat">
       <div class="feat-icon">
@@ -306,7 +304,6 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
     Nova Gateway &mdash; Built on <a href="https://workers.cloudflare.com" target="_blank" rel="noopener">Cloudflare Workers</a> &middot; Open Source
   </footer>
@@ -315,44 +312,43 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ── CONFIG ─────────────────────────────────
-// Point this at YOUR deployed Cloudflare Worker URL
-const WORKER_BASE = 'https://backend1.yang-xuanyu.workers.dev';   // e.g. 'https://nova-proxy.your-subdomain.workers.dev'
+// ══════════════════════════════════════════════
+//  CONFIG — your Worker URL (NO trailing slash)
+// ══════════════════════════════════════════════
+const WORKER_BASE = 'https://backend1.yang-xuanyu.workers.dev';
+
+let mode = 'tab';
 
 const $url   = document.getElementById('urlInput');
-const $frame = document.getElementById('proxyFrame');
-const $wrap  = document.getElementById('frameWrap');
-const $furl  = document.getElementById('frameUrl');
 const $toast = document.getElementById('toast');
 
 function setUrl(u) { $url.value = u; $url.focus() }
+
+function setMode(m, btn) {
+  mode = m;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
 
 $url.addEventListener('keydown', e => { if (e.key === 'Enter') handleGo() });
 
 function handleGo() {
   let raw = $url.value.trim();
   if (!raw) return;
-
-  // Auto-prepend https if missing
   if (!/^https?:\/\//i.test(raw)) raw = 'https://' + raw;
-
-  // Validate URL
   try { new URL(raw) } catch { return showToast('Please enter a valid URL') }
 
-  if (!WORKER_BASE) {
-    return showToast('Worker URL not configured — see the setup guide below');
-  }
+  if (!WORKER_BASE) return showToast('Worker URL not configured');
 
   const proxied = WORKER_BASE + '/proxy?url=' + encodeURIComponent(raw);
-  $furl.textContent = raw;
-  $frame.src = proxied;
-  $wrap.style.display = 'block';
-  $wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
 
-function closeFrame() {
-  $wrap.style.display = 'none';
-  $frame.src = 'about:blank';
+  saveHistory(raw);
+
+  if (mode === 'redirect') {
+    window.location.href = proxied;
+  } else {
+    window.open(proxied, '_blank');
+  }
 }
 
 function showToast(msg) {
@@ -360,6 +356,40 @@ function showToast(msg) {
   $toast.classList.add('show');
   setTimeout(() => $toast.classList.remove('show'), 3200);
 }
+
+function saveHistory(url) {
+  try {
+    let h = JSON.parse(localStorage.getItem('nova_history') || '[]');
+    h = h.filter(u => u !== url);
+    h.unshift(url);
+    if (h.length > 8) h = h.slice(0, 8);
+    localStorage.setItem('nova_history', JSON.stringify(h));
+    renderHistory();
+  } catch {}
+}
+
+function renderHistory() {
+  try {
+    const h = JSON.parse(localStorage.getItem('nova_history') || '[]');
+    const section = document.getElementById('historySection');
+    const list    = document.getElementById('historyList');
+    if (!h.length) { section.style.display = 'none'; return }
+    section.style.display = 'block';
+    list.innerHTML = h.map(u => {
+      const escaped = u.replace(/'/g, "\\'");
+      return '<a class="history-item" onclick="setUrl(\'' + escaped + '\'); handleGo()">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>' +
+        '<span>' + u + '</span></a>';
+    }).join('');
+  } catch {}
+}
+
+function clearHistory() {
+  localStorage.removeItem('nova_history');
+  renderHistory();
+}
+
+renderHistory();
 </script>
 </body>
 </html>
